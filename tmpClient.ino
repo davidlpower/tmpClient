@@ -24,7 +24,7 @@ IPAddress myDns(89,101,160,5);
 EthernetClient client;
 
 String device =  "168CC2CDE1926121FDB78164D5B237C626E33121DC08B048C37B2BE5DFF4B8F1"; 
-char server[] = "192.168.1.28";
+char server[] = "192.168.1.13";
 
 float temp = 0.0;
 float humid = 0.0;
@@ -58,7 +58,7 @@ void loop() {
     httpRequest();
   }
 
-  delay(5000);
+  delay(20000);
 }
 
 // this method makes a HTTP connection to the server:
@@ -69,7 +69,7 @@ void httpRequest() {
     Serial.println("connecting...");
 
     // send the HTTP PUT request:
-    String get = "GET http://192.168.1.28/web_service/?device=" + device;
+    String get = "GET http://web_service/?device=" + device;
 
     char tmp[10];
     char hum[10];
