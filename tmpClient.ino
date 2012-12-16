@@ -72,7 +72,7 @@ void httpRequest() {
     Serial.println("connecting...");
 
     // send the HTTP PUT request:
-    String get = "GET" + server + "/?device=" + device;
+    String get = "GET"+String(server)+"/?device=" + device;
 
     char tmp[10];
     char hum[10];
