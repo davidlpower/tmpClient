@@ -23,8 +23,10 @@ IPAddress myDns(89,101,160,5);
 // initialize the library instance:
 EthernetClient client;
 
-String device =  "168CC2CDE1926121FDB78164D5B237C626E33121DC08B048C37B2BE5DFF4B8F1"; 
-char server[] = "192.168.1.13";
+// Put your device ID here
+String device =  "";
+// Address to server
+char server[] = "http://www.weatherbyte.com";
 
 float temp = 0.0;
 float humid = 0.0;
@@ -57,19 +59,20 @@ void loop() {
   if(!client.connected()) {
     httpRequest();
   }
-
+  
+  // Delay before next reading and save
   delay(20000);
 }
 
 // this method makes a HTTP connection to the server:
 void httpRequest() {
-    
+
   // if there's a successful connection:
   if (client.connect(server, 80)) {
     Serial.println("connecting...");
 
     // send the HTTP PUT request:
-    String get = "GET http://web_service/?device=" + device;
+    String get = "GET" + server + "/?device=" + device;
 
     char tmp[10];
     char hum[10];
@@ -101,6 +104,7 @@ void printTemp(){
   Serial.print(temp);
   Serial.println(" *C");
 }
+
 
 
 
