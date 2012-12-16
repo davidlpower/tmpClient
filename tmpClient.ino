@@ -1,20 +1,16 @@
 #include <DHT.h>
-
 #include <SPI.h>
 #include <Ethernet.h>
-
 #define DHTPIN 2
 #define DHTTYPE DHT22 
 
 DHT dht(DHTPIN, DHTTYPE);
 
-// assign a MAC address for the ethernet controller.
-// fill in your address here:
+// Your MAC address
 byte mac[] = { 
   0x90, 0xA2, 0xDA, 0x00, 0x25, 0x76 };
 
-// fill in an available IP address on your network here,
-// for manual configuration:
+// Your IP here
 IPAddress ip(192,168,1,32);
 
 // fill in your Domain Name Server address here:
@@ -23,10 +19,10 @@ IPAddress myDns(89,101,160,5);
 // initialize the library instance:
 EthernetClient client;
 
-// Put your device ID here
-String device =  "";
-// Address to server
-char server[] = "http://www.weatherbyte.com";
+// Your Device ID
+String device =  ""; 
+// API Server IP
+char server[] = "188.141.4.63";
 
 float temp = 0.0;
 float humid = 0.0;
@@ -53,26 +49,24 @@ void loop() {
   readTemp();
   printTemp();
 
-
-
   // if you're not connected then connect again and send data:
   if(!client.connected()) {
     httpRequest();
   }
-  
-  // Delay before next reading and save
+
+// Delay between data send
   delay(20000);
 }
 
 // this method makes a HTTP connection to the server:
 void httpRequest() {
-
+    
   // if there's a successful connection:
   if (client.connect(server, 80)) {
     Serial.println("connecting...");
 
     // send the HTTP PUT request:
-    String get = "GET"+String(server)+"/?device=" + device;
+    String get = "GET http://weatherbyte.com/?device=" + device;
 
     char tmp[10];
     char hum[10];
@@ -104,7 +98,6 @@ void printTemp(){
   Serial.print(temp);
   Serial.println(" *C");
 }
-
 
 
 
