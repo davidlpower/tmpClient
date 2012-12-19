@@ -14,7 +14,7 @@ byte mac[] = {
 IPAddress ip(192,168,1,32);
 
 // fill in your Domain Name Server address here:
-IPAddress myDns(89,101,160,5);
+IPAddress myDns(8,8,8,8);
 
 // initialize the library instance:
 EthernetClient client;
