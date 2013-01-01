@@ -22,7 +22,7 @@ EthernetClient client;
 // Your Device ID
 String device =  ""; 
 // API Server IP
-char server[] = "188.141.4.63";
+char server[] = "188.141.4.12";
 
 float temp = 0.0;
 float humid = 0.0;
