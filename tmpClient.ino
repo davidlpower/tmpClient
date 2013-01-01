@@ -1,3 +1,12 @@
+
+//You will need to configure the device ID - you can get one of these by emailing;
+//  - david@karujahundu.com
+
+//I plan on updating the registration process soon.
+//You will also need to spcify;
+//  - device IP address
+//  - device MAC address
+  
 #include <DHT.h>
 #include <SPI.h>
 #include <Ethernet.h>
@@ -7,8 +16,7 @@
 DHT dht(DHTPIN, DHTTYPE);
 
 // Your MAC address
-byte mac[] = { 
-  0x90, 0xA2, 0xDA, 0x00, 0x25, 0x76 };
+byte mac[] = { 0x90, 0xA2, 0xDA, 0x00, 0x25, 0x76 };
 
 // Your IP here
 IPAddress ip(192,168,1,32);
@@ -54,13 +62,13 @@ void loop() {
     httpRequest();
   }
 
-// Delay between data send
+  // Delay between data send
   delay(20000);
 }
 
 // this method makes a HTTP connection to the server:
 void httpRequest() {
-    
+
   // if there's a successful connection:
   if (client.connect(server, 80)) {
     Serial.println("connecting...");
@@ -98,6 +106,7 @@ void printTemp(){
   Serial.print(temp);
   Serial.println(" *C");
 }
+
 
 
 
